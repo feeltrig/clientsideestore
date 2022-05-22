@@ -1,0 +1,15 @@
+@import "./config";
+@import "./resets";
+@import "./tasks";
+@import "./inputfield";
+@import "./tests";
+@import "./maincontainer";
+@import "./appcontainer";
+
+#root {
+  min-height: 100vh;
+  display: block;
+  width: 100%;
+  position: relative;
+  // @include flexcenter;
+}

@@ -1,0 +1,54 @@
+$dffont: 1rem;
+$heading-font: 4rem;
+$font-family: "poppins";
+
+@mixin centermargin {
+  margin: 0 auto;
+}
+
+@mixin flexcenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin centerold {
+  left: 50%;
+  top: 50%;
+  // transform: translate(-50%, -50%);
+}
+
+@mixin firstcol {
+  grid-column: 1/2;
+}
+
+@mixin centertext {
+  text-align: center;
+}
+
+@mixin secondcol {
+  grid-column: 2/3;
+}
+
+@mixin firstrow {
+  grid-row: 1/2;
+}
+
+@mixin leftcontent {
+  @include firstcol();
+  @include firstrow();
+}
+
+@mixin marginlr {
+  margin-right: auto;
+  margin-left: 10rem;
+}
+
+@mixin resetmp {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin margincenter {
+  margin-inline: auto;
+}
