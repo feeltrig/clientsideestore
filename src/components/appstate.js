@@ -2,7 +2,7 @@ import { createStore } from "redux";
 import mainreducer from "../reducers/mainreducer";
 
 // importing allproduct object
-import { allproducts } from "../database/products";
+import { allproducts } from "../database/allproducts";
 
 export const store = createStore(mainreducer, {
   productsavailable: allproducts,

@@ -1,5 +1,5 @@
 export const allproducts = {
-  stupidproducts: [
+  stupiditems: [
     {
       productName: "Buttplug",
       price: 50,

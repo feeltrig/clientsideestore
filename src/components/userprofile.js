@@ -18,10 +18,10 @@ const Userprofile = () => {
         <div className="lead">Username</div>
         <p>{state.userProfile.username}</p>
 
-        <div className="lead">Password</div>
+        {/* <div className="lead">Password</div>
         <p>{state.userProfile.password}</p>
         <div className="lead">Email</div>
-        <p>{state.userProfile.email}</p>
+        <p>{state.userProfile.email}</p> */}
       </div>
     );
   } else {

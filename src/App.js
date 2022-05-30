@@ -33,7 +33,7 @@ function App() {
             <Route path="products" element={<Products />}>
               <Route
                 path="stupiditems"
-                element={<Stupiditems catg="stupidproducts" />}
+                element={<Stupiditems catg="stupiditems" />}
               ></Route>
               <Route
                 path="groceries"
@@ -44,7 +44,7 @@ function App() {
                 element={<Bathitems catg="bathitems" />}
               />
             </Route>
-            <Route path="products/stupiditems/:id" element={<Productpage />} />
+            <Route path="products/:category/:id" element={<Productpage />} />
             <Route path="/yourcart" element={<Yourcart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/userprofile" element={<Userprofile />} />

@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
+
 import { FaCartPlus } from "react-icons/fa";
 
 // FUNCTIONS
@@ -45,6 +47,14 @@ const Groceries = ({ catg }) => {
                 >
                   <FaCartPlus />
                 </button>
+
+                {/* link to product page */}
+                <NavLink
+                  className="text-decoration-none p-2"
+                  to={`${obj.productName}`}
+                >
+                  View item
+                </NavLink>
               </div>
             </div>
           );
