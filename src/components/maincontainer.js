@@ -1,13 +1,10 @@
-import Displaytask from "./displaytask";
-import Inputfield from "./inputfield";
-// import Test from "./tests";
+import React from "react";
+import Navbar from "./navbar";
 
 export const Maincontainer = () => {
   return (
     <div className="maincontainer">
-      <Inputfield className="inputfield" />
-      <br />
-      <Displaytask className="tasks" />
+      <Navbar />
     </div>
   );
 };
