@@ -1,12 +1,10 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 // FUNCTIONS IMPORTS
-// id finder fn
 // category finder
 // product intel
-import { idfinder } from "../../functions/idfinder";
 import { categoryfinder } from "../../functions/categoryfinder";
 import { productintel } from "../../functions/productintel";
 
@@ -14,14 +12,13 @@ const Productpage = () => {
   // INITIALIZATIONS
   // main app state
   // location hook
-  // id
   // category
   // product intel
   const state = useSelector((state) => {
     return state;
   });
   const location = useLocation();
-  const id = idfinder(location);
+  const { id } = useParams();
   const category = categoryfinder(location);
   const intel = productintel(state, category, id);
 

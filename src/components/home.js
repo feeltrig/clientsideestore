@@ -9,24 +9,21 @@ import {
 } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
-var temp = {};
-
 const Home = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(undefined);
   const state = useSelector((state) => {
     return state;
   });
 
+  // FETCHING API
   useEffect(() => {
     const fetcher = async () => {
-      const response = await fetch("api/stuff");
-      console.log(response);
+      const response = await fetch("http://localhost:3001/api/stuff");
       const result = await response.json();
       return result;
     };
 
     fetcher().then((data) => {
-      temp = data;
       setData(data);
     });
   }, []);

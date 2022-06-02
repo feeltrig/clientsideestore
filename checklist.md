@@ -8,6 +8,7 @@
 7.  add api to fetch database
 8.  add api to fetch images from hdd of server
 9.  add api for checkout
+10. add component to show products instead of seperate components
 
 <!-- completed -->
 
