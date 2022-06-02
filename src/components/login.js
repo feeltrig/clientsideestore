@@ -9,8 +9,8 @@ const Login = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="container-fluid bg-dark min-vh-100 d-flex align-items-center ">
-      <form className="form container w-50 border  bg-dark text-white p-4 px-5 ">
+    <div className="container-fluid bg-dark min-vh-100 d-md-flex align-items-center ">
+      <form className="form container-sm w-auto border   bg-dark text-white p-4 px-5 ">
         <label htmlFor="username" className="form-label lead">
           Username
         </label>

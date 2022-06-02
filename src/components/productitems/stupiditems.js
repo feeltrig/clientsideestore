@@ -26,7 +26,7 @@ const Stupiditems = ({ catg }) => {
       <div className="row">
         {state.productsavailable[productcategory].map((obj, index) => {
           return (
-            <div key={index} className="col-3 g-4">
+            <div key={index} className="col-md-3 g-4">
               <div className="card">
                 <div className="card-body">
                   <div className="card-title">{obj.productName}</div>

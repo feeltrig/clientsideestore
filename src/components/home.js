@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  FaHome,
-  FaProductHunt,
-  FaCartPlus,
-  FaPowerOff,
-  FaSortNumericUp,
-  FaUser,
-} from "react-icons/fa";
+
 import { useSelector } from "react-redux";
 
 const Home = () => {
@@ -16,17 +9,17 @@ const Home = () => {
   });
 
   // FETCHING API
-  useEffect(() => {
-    const fetcher = async () => {
-      const response = await fetch("http://localhost:3001/api/stuff");
-      const result = await response.json();
-      return result;
-    };
+  // useEffect(() => {
+  //   const fetcher = async () => {
+  //     const response = await fetch("http://localhost:3001/api/stuff");
+  //     const result = await response.json();
+  //     return result;
+  //   };
 
-    fetcher().then((data) => {
-      setData(data);
-    });
-  }, []);
+  //   fetcher().then((data) => {
+  //     setData(data);
+  //   });
+  // }, []);
 
   return (
     <>
