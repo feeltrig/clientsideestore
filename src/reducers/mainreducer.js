@@ -25,6 +25,15 @@ export default (state, { type, payload }) => {
       signinstate.userProfile = payload;
       return signinstate;
 
+    case "logout":
+      let logoutstate = { ...state };
+      logoutstate.userProfile = {
+        username: null,
+        password: null,
+        email: null,
+      };
+      return logoutstate;
+
     default:
       return state;
   }

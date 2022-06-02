@@ -5,10 +5,9 @@
 4.  make redirect to login page if not logged in by force
 5.  make new deals appear on home page if they exists
 6.  make bootstrap modal for error messages for login
-7.  make product page accessible to rest of product categories
-8.  add api to fetch database
-9.  add api to fetch images from hdd of server
-10. add api for checkout
+7.  add api to fetch database
+8.  add api to fetch images from hdd of server
+9.  add api for checkout
 
 <!-- completed -->
 
@@ -16,5 +15,5 @@
 2.  add feature to show userprofile in nav only if user is logged in
 3.  do nesting for products.
 4.  make component to show product details according to dynamic url fetching
-
-<!-- 30 may 22 -->
+5.  make product page accessible to rest of product categories
+6.  add logout button

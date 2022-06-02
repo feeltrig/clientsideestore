@@ -1,15 +1,20 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
+// FUNCTIONS
 // import login checker
+// import logout function
 import islogged from "../functions/islogged";
+
+// ACTIONS
+import logout from "../actions/logout";
 
 const Userprofile = () => {
   // importing state
   const state = useSelector((state) => {
     return state;
   });
+  const dispatch = useDispatch();
 
   // no access unless logged in
   if (islogged(state)) {
@@ -18,10 +23,14 @@ const Userprofile = () => {
         <div className="lead">Username</div>
         <p>{state.userProfile.username}</p>
 
-        {/* <div className="lead">Password</div>
-        <p>{state.userProfile.password}</p>
-        <div className="lead">Email</div>
-        <p>{state.userProfile.email}</p> */}
+        <button
+          onClick={() => {
+            dispatch(logout());
+          }}
+          className="btn btn-warning lead"
+        >
+          Log Out
+        </button>
       </div>
     );
   } else {
