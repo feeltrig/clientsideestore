@@ -8,17 +8,63 @@ const Login = () => {
   // importing dispatcher
   const dispatch = useDispatch();
 
+  const submitfn = (data) => {
+    data.preventDefault();
+    let myForm = document.getElementById("myForm");
+    let dt = new FormData(myForm);
+    let username = dt.get("username");
+    let password = dt.get("password");
+    let finaldata = {
+      username: username,
+      password: password,
+    };
+
+    // SENDING JSON DATA
+    fetch("http://localhost:3001/api/submitform", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify(finaldata),
+    })
+      .then((response) => {
+        return response.text();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="container-fluid bg-dark min-vh-100 d-md-flex align-items-center ">
-      <form className="form container-sm w-auto border   bg-dark text-white p-4 px-5 ">
-        <label htmlFor="username" className="form-label lead">
+      <form
+        id="myForm"
+        onSubmit={(e) => {
+          submitfn(e);
+        }}
+        className="form container-sm w-auto border   bg-dark text-white p-4 px-5 "
+      >
+        <label htmlFor="username" name="username" className="form-label lead">
           Username
         </label>
-        <input type="text " className="form-control mb-3" required />
-        <label htmlFor="password" className="form-label lead">
+        <input
+          type="text "
+          name="username"
+          className="form-control mb-3"
+          required
+        />
+        <label htmlFor="password" name="password" className="form-label lead">
           password
         </label>
-        <input type="password" className="form-control mb-3" required />
+        <input
+          type="password"
+          name="password"
+          className="form-control mb-3"
+          required
+        />
         <button type="submit" className="btn btn-light my-2">
           Log In
         </button>
