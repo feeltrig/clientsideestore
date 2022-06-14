@@ -1,16 +1,10 @@
 export const allproducts = {
   stupiditems: [
     {
-      productName: "Buttplug",
+      productName: "eyelash curler",
       price: 50,
-      description: "something for your butt",
+      description: "curl like a hoe",
     },
-    {
-      productName: "Creampie",
-      price: 500,
-      description: "tastes like proteins",
-    },
-
     {
       productName: "Clips",
       price: 250,
@@ -36,66 +30,66 @@ export const allproducts = {
     {
       productName: "soap",
       price: 501,
-      description: "something for your butt",
+      description: "something for your skin",
     },
     {
       productName: "shampoo",
       price: 500,
-      description: "tastes like proteins",
+      description: "wash your hair with it",
     },
 
     {
       productName: "conditioners",
       price: 250,
-      description: "clips your hair tightly",
+      description: "moisturise your hair after bath",
     },
     {
       productName: "brush",
       price: 20,
-      description: "scratch your ass nicely",
+      description: "cleans your teeth nicely",
     },
     {
       productName: "towel",
       price: 120,
-      description: "to look like a clown",
+      description: "wipe your body dry",
     },
     {
       productName: "cleaner",
       price: 70,
-      description: "hide yourself being a pervert",
+      description: "get rid of dirt from your home",
     },
   ],
   groceries: [
     {
       productName: "apple",
       price: 50,
-      description: "something for your butt",
+      description: "say goodbye to doctors",
     },
     {
       productName: "banana",
       price: 500,
-      description: "tastes like proteins",
+      description: "cheapest fruit you can buy",
     },
 
     {
       productName: "mango",
       price: 250,
-      description: "clips your hair tightly",
+      description: "amazing for juices",
     },
     {
       productName: "kiwi",
       price: 20,
-      description: "scratch your ass nicely",
+      description: "great for health",
     },
     {
       productName: "orange",
       price: 120,
-      description: "to look like a clown",
+      description: "sweet and sour juice to drink",
     },
     {
       productName: "watermelon",
       price: 70,
-      description: "hide yourself being a pervert",
+      description: "cool your body with watermelon juice",
     },
   ],
 };
