@@ -63,15 +63,15 @@ const Yourcart = () => {
           {state.yourcart.map((items, index) => {
             return (
               <div key={index} className="row my-1">
-                <p className="col-10">{items.productName}</p>
-                <p className="col-1">{items.price + "$"}</p>
+                <p className="col-sm-10 col-8">{items.productName}</p>
+                <p className="col-sm-1 col-2">{items.price + "$"}</p>
 
                 {/* delete btn */}
                 <div
                   onClick={() => {
                     dispatch(deletefromcart(items.productName));
                   }}
-                  className="col-1 borderless "
+                  className="col-sm-1 col-2 borderless "
                 >
                   <FaTrash
                     className="w-100"

@@ -3,23 +3,20 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 // FUNCTIONS IMPORTS
-// category finder
 // product intel
-import { categoryfinder } from "../../functions/categoryfinder";
 import { productintel } from "../../functions/productintel";
 
 const Productpage = () => {
   // INITIALIZATIONS
   // main app state
   // location hook
-  // category
+  // category and id
   // product intel
   const state = useSelector((state) => {
     return state;
   });
   const location = useLocation();
-  const { id } = useParams();
-  const category = categoryfinder(location);
+  const { id, category } = useParams();
   const intel = productintel(state, category, id);
 
   // redirect to product page

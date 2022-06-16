@@ -5,8 +5,8 @@ import { Link, Outlet } from "react-router-dom";
 // FUNCTIONS
 // 12. isproduct added or not
 // 13. import login checker
-import { isproductadded } from "../functions/checkproduct";
-import islogged from "../functions/islogged";
+import { isproductadded } from "../../functions/checkproduct";
+import islogged from "../../functions/islogged";
 
 // MAIN COMPONENT
 const Products = () => {
@@ -15,6 +15,8 @@ const Products = () => {
   const state = useSelector((state) => {
     return state;
   });
+
+  let categories = Object.keys(state.productsavailable);
 
   // no access unless logged in
   if (islogged(state)) {
@@ -25,39 +27,26 @@ const Products = () => {
             {/* title */}
             <div className="h1  my-5">Our Products</div>
             <div className="h2">Categoies</div>
-            {/* title end */}
 
             {/* categories */}
             <section className=" flex-row d-flex gap-5 text-decoration-none my-5">
-              <p>
-                <Link
-                  className="text-decoration-none text-white bg-dark btn"
-                  to="stupiditems"
-                >
-                  Stupid stuff
-                </Link>
-              </p>
-              <p>
-                <Link
-                  className="text-decoration-none text-white bg-dark btn"
-                  to="groceries"
-                >
-                  Groceries
-                </Link>
-              </p>
-              <p>
-                <Link
-                  className="text-decoration-none text-white bg-dark btn"
-                  to="bathitems"
-                >
-                  Bath items
-                </Link>
-              </p>
+              {categories.map((categories) => {
+                return (
+                  <p>
+                    <Link
+                      key={categories}
+                      className="text-decoration-none text-white bg-dark btn"
+                      to={categories}
+                    >
+                      {categories}
+                    </Link>
+                  </p>
+                );
+              })}
             </section>
-            {/* category end */}
 
             {/* list of products */}
-            <Outlet />
+            <Outlet context={state.productsavailable} />
           </div>
         </div>
       </div>

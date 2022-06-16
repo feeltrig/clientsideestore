@@ -23,7 +23,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="bg-dark  text-light">home</div>
+      <div className="container">home</div>
       {data !== undefined && <div className="text-dark">{data.person}</div>}
     </>
   );
