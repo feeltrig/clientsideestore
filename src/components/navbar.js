@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { NavDropdown } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 
 // import login checker
@@ -36,7 +37,7 @@ const Navbar = () => {
 
               <p className="nav-item">
                 <Link to="/yourcart" className="nav-link">
-                  Yourcart <sup>{state.yourcart.length + " items"}</sup>
+                  Cart <sup>{state.yourcart.length}</sup>
                 </Link>
               </p>
 
@@ -45,6 +46,13 @@ const Navbar = () => {
                   User Profile
                 </Link>
               </p>
+              <NavDropdown title="Contact us" menuVariant="dark">
+                <NavDropdown.Item>Instagram</NavDropdown.Item>
+                <NavDropdown.Item>Facebook </NavDropdown.Item>
+                <NavDropdown.Item>Whatsapp</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item>Github</NavDropdown.Item>
+              </NavDropdown>
             </>
           )}
         </div>

@@ -19,19 +19,29 @@ const Userprofile = () => {
   // no access unless logged in
   if (islogged(state)) {
     return (
-      <div className="container-fluid bg-dark text-light p-5 border">
-        <div className="lead">Username</div>
-        <p>{state.userProfile.username}</p>
+      <>
+        <div className="container-fluid bg-dark text-light p-5 border">
+          <div className="h6">Username</div>
+          <p className="h1">{state.userProfile.username}</p>
 
-        <button
-          onClick={() => {
-            dispatch(logout());
-          }}
-          className="btn btn-warning lead"
-        >
-          Log Out
-        </button>
-      </div>
+          <button
+            onClick={() => {
+              dispatch(logout());
+            }}
+            className="btn btn-warning lead"
+          >
+            Log Out
+          </button>
+        </div>
+        <div className="card">
+          <p>title</p>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
+            quia beatae id aspernatur corrupti nesciunt quibusdam, voluptas mai
+          </div>
+          <div>footer</div>
+        </div>
+      </>
     );
   } else {
     return (

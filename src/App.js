@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 // COMPONENTS
@@ -9,8 +9,13 @@ import Products from "./components/products/products";
 import Productcard from "./components/products/productcard";
 import Productpage from "./components/products/productpage";
 
+import Breadcrumbs from "./components/breadcrumb";
+
 import Yourcart from "./components/yourcart";
+
 import Login from "./components/login";
+import Signin from "./components/signin";
+
 import Userprofile from "./components/userprofile";
 import Navbar from "./components/navbar";
 import Error from "./components/Error";
@@ -36,6 +41,7 @@ function App() {
       <Router>
         <div className="vh-min-75 ">
           <Navbar />
+          <Breadcrumbs />
 
           <Routes>
             {islogged && (
@@ -54,6 +60,7 @@ function App() {
             )}
             <Route path="*" element={<Error />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signin" element={<Signin />} />
           </Routes>
 
           <footer className="footer p-2 my-5 bg-light h2 text-center">

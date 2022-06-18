@@ -21,8 +21,6 @@ const Productcard = () => {
   const { category } = useParams();
   const products = useOutletContext();
 
-  console.log(products[category]);
-
   return (
     <div>
       hello

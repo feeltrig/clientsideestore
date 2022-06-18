@@ -1,12 +1,18 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Modal, ModalBody, ModalFooter, Button } from "react-bootstrap";
 
 import signinfn from "../actions/signin";
 
 const Login = () => {
+  const [modalopen, setModalopen] = useState(true);
   // importing dispatcher
   const dispatch = useDispatch();
+
+  // INITIALIZATION
+  // navigate
+  const navigate = useNavigate();
 
   const submitfn = (data) => {
     data.preventDefault();
@@ -40,6 +46,22 @@ const Login = () => {
 
   return (
     <div className="container-fluid bg-dark min-vh-100 d-md-flex align-items-center ">
+      <Modal show={modalopen} backdrop="static">
+        <Modal.Header>
+          <Modal.Title>Message</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Succesfully logged in</Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              setModalopen(false);
+            }}
+          >
+            ye, ye i know
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <form
         id="myForm"
         onSubmit={(e) => {
@@ -65,7 +87,13 @@ const Login = () => {
           className="form-control mb-3"
           required
         />
-        <button type="submit" className="btn btn-light my-2">
+        <button
+          type="submit"
+          onClick={() => {
+            setModalopen(true);
+          }}
+          className="btn btn-light my-2"
+        >
           Log In
         </button>
         <div>
@@ -74,14 +102,21 @@ const Login = () => {
           </Link>
         </div>
         <div
-          className="btn btn-primary"
+          className="btn btn-primary blur"
           onClick={() => {
             dispatch(signinfn("guest", "123", "123"));
           }}
         >
           Login as a guest
         </div>
-        <div className="btn btn-primary m-2">Sign in</div>
+        <div
+          onClick={() => {
+            navigate("/signin");
+          }}
+          className="btn btn-primary blur m-2"
+        >
+          Sign in
+        </div>
       </form>
     </div>
   );
