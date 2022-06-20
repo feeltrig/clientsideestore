@@ -1,20 +1,24 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // FUNCTIONS
 // import login checker
-// import logout function
 import islogged from "../functions/islogged";
 
 // ACTIONS
 import logout from "../actions/logout";
 
 const Userprofile = () => {
-  // importing state
+  // INITIALIZATIONS
+  // main app state
+  // dispatcher
+  // navigate
   const state = useSelector((state) => {
     return state;
   });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // no access unless logged in
   if (islogged(state)) {
@@ -27,19 +31,12 @@ const Userprofile = () => {
           <button
             onClick={() => {
               dispatch(logout());
+              navigate("/login");
             }}
             className="btn btn-warning lead"
           >
             Log Out
           </button>
-        </div>
-        <div className="card">
-          <p>title</p>
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat
-            quia beatae id aspernatur corrupti nesciunt quibusdam, voluptas mai
-          </div>
-          <div>footer</div>
         </div>
       </>
     );

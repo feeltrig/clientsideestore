@@ -30,11 +30,10 @@ const Products = () => {
 
             {/* categories */}
             <section className=" flex-row d-flex gap-5 text-decoration-none my-5">
-              {categories.map((categories) => {
+              {categories.map((categories, index) => {
                 return (
-                  <p>
+                  <p key={index}>
                     <Link
-                      key={categories}
                       className="text-decoration-none text-white bg-dark btn"
                       to={categories}
                     >

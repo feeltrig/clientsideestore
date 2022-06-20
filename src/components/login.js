@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Modal, ModalBody, ModalFooter, Button } from "react-bootstrap";
+import {
+  Modal,
+  ModalBody,
+  ModalFooter,
+  Button,
+  Nav,
+  Navbar,
+  Form,
+} from "react-bootstrap";
 
+// FUNCTIONS IMPORTS
 import signinfn from "../actions/signin";
+import Loginfn from "../actions/loginaction";
 
 const Login = () => {
-  const [modalopen, setModalopen] = useState(true);
+  const [modalopen, setModalopen] = useState(false);
   // importing dispatcher
   const dispatch = useDispatch();
 
@@ -26,7 +36,7 @@ const Login = () => {
     };
 
     // SENDING JSON DATA
-    fetch("http://localhost:3001/api/submitform", {
+    fetch("http://localhost:3001/api/login", {
       method: "POST",
       headers: new Headers({
         "Content-Type": "application/json",
@@ -34,10 +44,11 @@ const Login = () => {
       body: JSON.stringify(finaldata),
     })
       .then((response) => {
-        return response.text();
+        return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        dispatch(Loginfn(data[0]));
       })
       .catch((err) => {
         console.log(err);
@@ -118,6 +129,8 @@ const Login = () => {
           Sign in
         </div>
       </form>
+
+      {/* try */}
     </div>
   );
 };

@@ -31,7 +31,6 @@ function App() {
 
   store.subscribe(() => {
     let islogged = store.getState().userProfile.username !== null;
-    console.log("subscribe ran");
 
     setislogged(islogged);
   });
@@ -44,9 +43,9 @@ function App() {
           <Breadcrumbs />
 
           <Routes>
+            <Route path="/" element={<Home />} />
             {islogged && (
               <>
-                <Route path="/" element={<Home />} />
                 <Route path="products" element={<Products />}>
                   <Route path=":category" element={<Productcard />}></Route>
                 </Route>
@@ -54,10 +53,12 @@ function App() {
                   path="products/:category/:id"
                   element={<Productpage />}
                 />
+
                 <Route path="/yourcart" element={<Yourcart />} />
                 <Route path="/userprofile" element={<Userprofile />} />
               </>
             )}
+
             <Route path="*" element={<Error />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signin" element={<Signin />} />

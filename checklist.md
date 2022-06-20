@@ -2,11 +2,9 @@
 
 2.  add some regex for login stuff
 3.  make decent footer.
-4.  make new deals appear on home page if they exists
-5.  make bootstrap modal for error messages for login
-6.  add api to fetch database
-7.  add api to fetch images from hdd of server
-8.  add api for checkout
+4.  make bootstrap modal for error messages for login
+5.  add api for checkout
+6.  add list of bought products
 
 <!-- completed -->
 
@@ -18,3 +16,5 @@
 6.  add logout button
 7.  add component to show products instead of seperate components
 8.  make redirect to login page if not logged in by force
+9.  made mysql login functionality
+10. add api to fetch database

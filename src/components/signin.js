@@ -22,7 +22,7 @@ const Signin = () => {
   const [password, setpassword] = useState("");
   const [gender, setgender] = useState("");
   const [rich, setrich] = useState([]);
-  const [country, setcountry] = useState("");
+  const [city, setcity] = useState("");
 
   // FORM SUBMIT FUNCTION
   const handlesubmit = (event) => {
@@ -32,13 +32,35 @@ const Signin = () => {
       password: password,
       gender: gender,
       rich: rich,
-      country: country,
+      city: city,
     };
     console.log(profile);
+
+    fetch("http://localhost:3001/api/submitform", {
+      method: "POST",
+      headers: new Headers({ "Content-Type": "application/JSON" }),
+      body: JSON.stringify(profile),
+    })
+      .then((res) => {
+        console.log(res.text());
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+      });
+
+    fetch("http://localhost:3001/users")
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((res) => {
+        console.log(res);
+      });
   };
 
   return (
-    <Container fluid className="ms-0 p-5 w-50 ">
+    <Container fluid className=" p-5 w-50 ">
       <Row>
         <Col>
           <Form
@@ -156,37 +178,16 @@ const Signin = () => {
               />
             </Form.Group>
 
-            <Form.Label className="mt-3">Your country</Form.Label>
+            <Form.Label className="mt-3">Your city</Form.Label>
             <Form.Select
               defaultValue={"india"}
               onChange={(event) => {
-                setcountry(event.target.value);
+                setcity(event.target.value);
               }}
             >
               <option>India the shithole</option>
               <option>USA </option>
             </Form.Select>
-
-            <ButtonGroup
-              className="me-2"
-              aria-label="First group"
-              onClick={(event) => {
-                console.log(event.target.value);
-              }}
-            >
-              <Button variant="secondary" value={1}>
-                1
-              </Button>{" "}
-              <Button variant="secondary" value={2}>
-                2
-              </Button>{" "}
-              <Button variant="secondary" value={3}>
-                3
-              </Button>{" "}
-              <Button variant="secondary" value={4}>
-                4
-              </Button>
-            </ButtonGroup>
 
             {/* SUBMIT */}
             <Button type="submit" className="my-3">

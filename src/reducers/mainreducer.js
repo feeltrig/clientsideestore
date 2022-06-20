@@ -34,6 +34,11 @@ export default (state, { type, payload }) => {
       };
       return logoutstate;
 
+    case "loginfn":
+      let loginstate = { ...state };
+      loginstate.userProfile = payload.profile;
+      return loginstate;
+
     default:
       return state;
   }
