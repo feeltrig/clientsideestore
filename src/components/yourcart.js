@@ -3,8 +3,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { FaCross, FaTrash } from "react-icons/fa";
 import { Toast, ToastContainer, Button, CloseButton } from "react-bootstrap";
 
+// ACTION IMPORTS
 // importing delete from cart function
 import deletefromcart from "../actions/deletefromcart";
+
+// FUNCTION IMPORTS
+// notify modal
+import Notifymodal from "../functions/notifymodal";
 
 const Yourcart = () => {
   // INITIALIZATIONS
@@ -12,10 +17,12 @@ const Yourcart = () => {
   // 1.2 total amount state
   // 1.3 notification state
   // 1.4 purchased item list
+  // 1.5 checkout notification state modal
   const [isCartEmpty, setIsCartEmpty] = useState(true);
   const [totalamount, setTotalamount] = useState(0);
   const [alert, setalert] = useState(false);
   const [purchaseList, setpurchaseList] = useState([]);
+  const [openmodal, setopenmodal] = useState(false);
 
   // IMPORTS
   // importing state
@@ -57,10 +64,15 @@ const Yourcart = () => {
       }),
     })
       .then((res) => {
+        if (res.status > 300) {
+          setalert(true);
+        }
+
         return res.json();
       })
       .then((result) => {
         console.log(result);
+        setopenmodal(true);
       });
   };
 
@@ -71,18 +83,22 @@ const Yourcart = () => {
 
   return (
     <>
+      <Notifymodal
+        body="Purchase succesfull"
+        message="Message"
+        openstate={openmodal}
+        closefn={setopenmodal}
+      />
+
       <div aria-live="polite" aria-atomic="true" className=" position-relative">
-        {isCartEmpty && alert && (
+        {alert && (
           <ToastContainer className="p-3" position={"top-center"}>
             <Toast>
               <Toast.Header closeButton={false}>
                 <strong className="me-auto">Alert</strong>
-                <small>11 mins ago</small>
                 <CloseButton onClick={() => setalert(false)} />
               </Toast.Header>
-              <Toast.Body>
-                No item added to cart. Add items before checking out
-              </Toast.Body>
+              <Toast.Body>Failed to connect please try again.</Toast.Body>
             </Toast>
           </ToastContainer>
         )}
@@ -137,6 +153,8 @@ const Yourcart = () => {
             <p className="h2">Total Amount</p>
             <p className="h2">{totalamount + "$"}</p>
           </div>
+
+          {/* checkout button */}
           {!isCartEmpty && (
             <Button
               variant="primary"

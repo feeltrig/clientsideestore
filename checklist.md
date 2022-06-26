@@ -3,6 +3,7 @@
 2.  add some regex for login stuff
 3.  make bootstrap modal for error messages for login
 4.  add list of bought products
+5.  add all modal alerts for notifications and stuff
 
 <!-- completed -->
 

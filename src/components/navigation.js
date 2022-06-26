@@ -37,7 +37,9 @@ const Navigation = () => {
       <div>
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="#home">Mini estore</Navbar.Brand>
+            <Navbar.Brand as={Link} to="/">
+              Mini estore
+            </Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="ms-auto">
@@ -59,12 +61,10 @@ const Navigation = () => {
                         My Account
                       </NavDropdown.Item>
                       <NavDropdown.Item
-                        as={Link}
                         onClick={() => {
                           dispatch(logout());
-                          navigate("/login", { extended: false });
+                          navigate("/login", { replace: true });
                         }}
-                        to="/Logout"
                       >
                         Log Out
                       </NavDropdown.Item>

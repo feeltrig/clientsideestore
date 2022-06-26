@@ -1,10 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Error = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="container  vh-100 border rounded align-items-center  justify-content-center ">
-      <div>"Wrong url, dumbass"</div>
-    </div>
+    <>
+      <div className="display-5 mx-auto text-center">
+        "Wrong url, Please check your url"
+      </div>
+      ;
+      <div className="mx-auto text-center border ">
+        <Button
+          variant="primary"
+          onClick={() => {
+            navigate("/login", { replace: true });
+          }}
+        >
+          Goto to mini estore
+        </Button>
+      </div>
+    </>
   );
 };
 

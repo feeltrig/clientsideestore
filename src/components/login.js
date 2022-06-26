@@ -70,7 +70,7 @@ const Login = () => {
               setModalopen(false);
             }}
           >
-            ye, ye i know
+            Close
           </Button>
         </Modal.Footer>
       </Modal>

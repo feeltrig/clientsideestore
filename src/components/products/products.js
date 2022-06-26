@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Outlet, useParams } from "react-router-dom";
+import { Button, Nav, Row, Col, Container } from "react-bootstrap";
 
 // FUNCTIONS
 // 12. isproduct added or not
@@ -26,23 +27,28 @@ const Products = () => {
           <div>
             {/* title */}
             <div className="h1  my-5">Our Products</div>
-            <div className="h2">Categoies</div>
+            <div className="h2 my-4">Categoies</div>
 
             {/* categories */}
-            <section className=" flex-row d-flex gap-5 text-decoration-none my-5">
-              {categories.map((categories, index) => {
-                return (
-                  <p key={index}>
-                    <Link
-                      className="text-decoration-none text-white bg-dark btn"
-                      to={categories}
-                    >
-                      {categories}
-                    </Link>
-                  </p>
-                );
-              })}
-            </section>
+            <Container fluid>
+              <Row className="">
+                {categories.map((categories, index) => {
+                  return (
+                    <Col xs="auto mb-5 ps-0">
+                      <Button variant="dark" text="light">
+                        <Nav.Link
+                          as={Link}
+                          className="text-light"
+                          to={categories}
+                        >
+                          {categories}
+                        </Nav.Link>
+                      </Button>
+                    </Col>
+                  );
+                })}
+              </Row>
+            </Container>
 
             {/* list of products */}
             <Outlet context={state.productsavailable} />

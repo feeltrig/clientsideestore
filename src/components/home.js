@@ -40,8 +40,8 @@ const Home = () => {
 
   return (
     <>
-      <div className="bg-dark d-flex relative align-items-center  vh-100 text-light">
-        <div className="mx-5 h-50">
+      <div className="bg-dark px-5 d-flex relative align-items-center  vh-100 text-light">
+        <div className="ms-5 ">
           <div className="display-2">Welcome to our</div>
           <div className="display-2">mini estore</div>
         </div>
