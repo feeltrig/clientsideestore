@@ -9,7 +9,7 @@ import Products from "./components/products/products";
 import Productcard from "./components/products/productcard";
 import Productpage from "./components/products/productpage";
 
-import Breadcrumbs from "./components/breadcrumb";
+import Breadcrumbnavigation from "./components/breadcrumbnavigation";
 
 import Yourcart from "./components/yourcart";
 
@@ -17,7 +17,7 @@ import Login from "./components/login";
 import Signin from "./components/signin";
 
 import Userprofile from "./components/userprofile";
-import Navbar from "./components/navbar";
+import Navigation from "./components/navigation";
 import Error from "./components/Error";
 
 // imports for redux
@@ -27,11 +27,10 @@ import { Provider } from "react-redux";
 import { store } from "./appstate/appstate";
 
 function App() {
+  // set logged state
   const [islogged, setislogged] = useState(false);
-
   store.subscribe(() => {
     let islogged = store.getState().userProfile.username !== null;
-
     setislogged(islogged);
   });
 
@@ -39,11 +38,10 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="vh-min-75 ">
-          <Navbar />
-          <Breadcrumbs />
+          <Navigation />
+          <Breadcrumbnavigation />
 
           <Routes>
-            <Route path="/" element={<Home />} />
             {islogged && (
               <>
                 <Route path="products" element={<Products />}>
@@ -59,6 +57,7 @@ function App() {
               </>
             )}
 
+            <Route path="/" element={<Home />} />
             <Route path="*" element={<Error />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signin" element={<Signin />} />

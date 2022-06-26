@@ -1,10 +1,8 @@
 <!-- todo list -->
 
 2.  add some regex for login stuff
-3.  make decent footer.
-4.  make bootstrap modal for error messages for login
-5.  add api for checkout
-6.  add list of bought products
+3.  make bootstrap modal for error messages for login
+4.  add list of bought products
 
 <!-- completed -->
 
@@ -18,3 +16,4 @@
 8.  make redirect to login page if not logged in by force
 9.  made mysql login functionality
 10. add api to fetch database
+11. add api for checkout

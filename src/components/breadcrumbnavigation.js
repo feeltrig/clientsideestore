@@ -1,8 +1,8 @@
 import React from "react";
-import { Breadcrumb } from "react-bootstrap";
+import { Breadcrumb, Container } from "react-bootstrap";
 import { useLocation, Link } from "react-router-dom";
 
-const Breadcrumbs = () => {
+const Breadcrumbnavigation = () => {
   // LOCATION HOOK
   const location = useLocation();
   const path = location.pathname.split("/").filter((item) => {
@@ -34,6 +34,6 @@ const Breadcrumbs = () => {
   );
 };
 
-export default Breadcrumbs;
+export default Breadcrumbnavigation;
 
 // <div class="h-auto d-inline-block" style="width: 120px;

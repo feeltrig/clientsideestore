@@ -16,13 +16,13 @@ import signinfn from "../actions/signin";
 import Loginfn from "../actions/loginaction";
 
 const Login = () => {
-  const [modalopen, setModalopen] = useState(false);
-  // importing dispatcher
-  const dispatch = useDispatch();
-
   // INITIALIZATION
-  // navigate
+  // 1. navigate
+  // 2. dispatcher
+  // 3. modal state
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [modalopen, setModalopen] = useState(false);
 
   const submitfn = (data) => {
     data.preventDefault();
@@ -57,6 +57,7 @@ const Login = () => {
 
   return (
     <div className="container-fluid bg-dark min-vh-100 d-md-flex align-items-center ">
+      {/* MODAL */}
       <Modal show={modalopen} backdrop="static">
         <Modal.Header>
           <Modal.Title>Message</Modal.Title>
@@ -73,6 +74,8 @@ const Login = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* FORM */}
       <form
         id="myForm"
         onSubmit={(e) => {
@@ -80,6 +83,7 @@ const Login = () => {
         }}
         className="form container-sm w-auto border   bg-dark text-white p-4 px-5 "
       >
+        {/* USERNAME */}
         <label htmlFor="username" name="username" className="form-label lead">
           Username
         </label>
@@ -89,6 +93,8 @@ const Login = () => {
           className="form-control mb-3"
           required
         />
+
+        {/* PASSWORD */}
         <label htmlFor="password" name="password" className="form-label lead">
           password
         </label>
@@ -98,6 +104,8 @@ const Login = () => {
           className="form-control mb-3"
           required
         />
+
+        {/* LOGIN */}
         <button
           type="submit"
           onClick={() => {
@@ -107,19 +115,26 @@ const Login = () => {
         >
           Log In
         </button>
+
+        {/* FORGOT PASSWORD */}
         <div>
           <Link to="/" className="link text-light">
             forgot my password
           </Link>
         </div>
+
+        {/* GUEST LOGIN */}
         <div
           className="btn btn-primary blur"
           onClick={() => {
             dispatch(signinfn("guest", "123", "123"));
+            navigate("/");
           }}
         >
           Login as a guest
         </div>
+
+        {/* SIGN IN */}
         <div
           onClick={() => {
             navigate("/signin");
@@ -129,8 +144,6 @@ const Login = () => {
           Sign in
         </div>
       </form>
-
-      {/* try */}
     </div>
   );
 };

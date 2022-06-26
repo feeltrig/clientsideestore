@@ -24,9 +24,20 @@ const Signin = () => {
   const [rich, setrich] = useState([]);
   const [city, setcity] = useState("");
 
+  // FORM CLEANER
+  const clearForm = () => {
+    setusername("");
+    setpassword("");
+    setgender("");
+    rich([]);
+    setcity("");
+  };
+
   // FORM SUBMIT FUNCTION
   const handlesubmit = (event) => {
     event.preventDefault();
+
+    // COLLECTING DATA TO SEND
     let profile = {
       username: username,
       password: password,
@@ -36,22 +47,23 @@ const Signin = () => {
     };
     console.log(profile);
 
+    // MAKING POST REQUEST TO SERVER
     fetch("http://localhost:3001/api/submitform", {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/JSON" }),
       body: JSON.stringify(profile),
     })
       .then((res) => {
-        console.log(res.text());
         return res.json();
       })
       .then((res) => {
         console.log(res);
+        clearForm();
       });
 
+    // FETCHING ALL USERS DATA
     fetch("http://localhost:3001/users")
       .then((res) => {
-        console.log(res);
         return res.json();
       })
       .then((res) => {
@@ -60,8 +72,8 @@ const Signin = () => {
   };
 
   return (
-    <Container fluid className=" p-5 w-50 ">
-      <Row>
+    <Container fluid className=" text-light vh-100 bg-dark p-5 ">
+      <Row className="w-50 mx-auto">
         <Col>
           <Form
             variant="sm"
@@ -71,6 +83,8 @@ const Signin = () => {
             }}
           >
             {/* PERSONAL INFO */}
+
+            {/* USERNAME */}
             <Form.Group>
               <Form.Label>User name</Form.Label>
               <Form.Control
@@ -80,11 +94,14 @@ const Signin = () => {
                 placeholder="Your name"
                 className="mb-3"
                 name="username"
+                value={username}
                 onChange={(event) => {
                   setusername(event.target.value);
                 }}
               />
             </Form.Group>
+
+            {/* PASSWORD */}
             <Form.Group>
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -93,6 +110,7 @@ const Signin = () => {
                 type="password"
                 id="password"
                 name="password"
+                value={password}
                 placeholder="Your password"
                 className="mb-3"
                 onChange={(event) => {
@@ -111,7 +129,6 @@ const Signin = () => {
                 type="radio"
                 id="male"
                 onChange={(event) => {
-                  console.log(event.target.id);
                   setgender(event.target.id);
                 }}
               />
@@ -121,7 +138,6 @@ const Signin = () => {
                 type="radio"
                 id="female"
                 onChange={(event) => {
-                  console.log(event.target.id);
                   setgender(event.target.id);
                 }}
               />
@@ -132,7 +148,6 @@ const Signin = () => {
                 id="other"
                 className="mb-3"
                 onChange={(event) => {
-                  console.log(event.target.id);
                   setgender(event.target.id);
                 }}
               />
@@ -148,7 +163,6 @@ const Signin = () => {
                 value="yes"
                 onChange={(event) => {
                   setrich((state) => {
-                    console.log(state);
                     if (event.target.checked) {
                       return [...state, event.target.value];
                     } else {
@@ -165,7 +179,6 @@ const Signin = () => {
                 value="my family"
                 onChange={(event) => {
                   setrich((state) => {
-                    console.log(state);
                     if (event.target.checked) {
                       return [...state, event.target.value];
                     } else {
@@ -185,7 +198,7 @@ const Signin = () => {
                 setcity(event.target.value);
               }}
             >
-              <option>India the shithole</option>
+              <option>India</option>
               <option>USA </option>
             </Form.Select>
 

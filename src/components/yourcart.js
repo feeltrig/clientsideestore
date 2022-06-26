@@ -10,17 +10,19 @@ const Yourcart = () => {
   // INITIALIZATIONS
   // 1.1 no items in cart state
   // 1.2 total amount state
-  // notification state
+  // 1.3 notification state
+  // 1.4 purchased item list
   const [isCartEmpty, setIsCartEmpty] = useState(true);
   const [totalamount, setTotalamount] = useState(0);
   const [alert, setalert] = useState(false);
+  const [purchaseList, setpurchaseList] = useState([]);
 
+  // IMPORTS
   // importing state
+  // importing dispatcher
   const state = useSelector((state) => {
     return state;
   });
-
-  // importing dispatcher
   const dispatch = useDispatch();
 
   // CART UPDATER
@@ -41,6 +43,25 @@ const Yourcart = () => {
       total = total + item.price;
     });
     setTotalamount(total);
+  };
+
+  // CHECKOUT AND SEND LIST TO DB
+  const handleCheckout = () => {
+    fetch(`http://localhost:3001/user/checkout/${state.userProfile.username}`, {
+      method: "PUT",
+      headers: new Headers({ "Content-Type": "application/JSON" }),
+      Credential: true,
+      body: JSON.stringify({
+        purchaseList: JSON.stringify(state.yourcart),
+        totalcost: Number(totalamount),
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((result) => {
+        console.log(result);
+      });
   };
 
   useEffect(() => {
@@ -117,7 +138,13 @@ const Yourcart = () => {
             <p className="h2">{totalamount + "$"}</p>
           </div>
           {!isCartEmpty && (
-            <Button variant="primary" onClick={() => setalert(true)}>
+            <Button
+              variant="primary"
+              onClick={() => {
+                setalert(true);
+                handleCheckout();
+              }}
+            >
               Checkout
             </Button>
           )}

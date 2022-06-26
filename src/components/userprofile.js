@@ -1,13 +1,10 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Container } from "react-bootstrap";
 
 // FUNCTIONS
 // import login checker
 import islogged from "../functions/islogged";
-
-// ACTIONS
-import logout from "../actions/logout";
 
 const Userprofile = () => {
   // INITIALIZATIONS
@@ -17,28 +14,26 @@ const Userprofile = () => {
   const state = useSelector((state) => {
     return state;
   });
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+
+  // FETCH USER PURCHASELIST FROM DB
+  useEffect(() => {
+    fetch(
+      `http://localhost:3001/purchaseList/${state.userProfile.username}`
+    ).then();
+  }, []);
 
   // no access unless logged in
   if (islogged(state)) {
     return (
-      <>
-        <div className="container-fluid bg-dark text-light p-5 border">
+      <div className="bg-dark vh-100">
+        <div className="container-fluid bg-dark text-light mx-5 p-5 ">
+          {/* USERNAME */}
           <div className="h6">Username</div>
           <p className="h1">{state.userProfile.username}</p>
 
-          <button
-            onClick={() => {
-              dispatch(logout());
-              navigate("/login");
-            }}
-            className="btn btn-warning lead"
-          >
-            Log Out
-          </button>
+          <Container fluid></Container>
         </div>
-      </>
+      </div>
     );
   } else {
     return (

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import {} from "react-bootstrap";
 
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -13,15 +14,14 @@ const Home = () => {
   });
   const navigate = useNavigate();
 
-  console.log("this is home");
-
-  useEffect(() => {
-    if (islog) {
-      return;
-    } else {
-      navigate("/login");
-    }
-  }, []);
+  // // FORCED LOGIN
+  // useEffect(() => {
+  //   if (islog) {
+  //     return;
+  //   } else {
+  //     navigate("/login");
+  //   }
+  // }, []);
 
   const islog = islogged(state);
 
@@ -40,7 +40,12 @@ const Home = () => {
 
   return (
     <>
-      <div>this is homw</div>
+      <div className="bg-dark d-flex relative align-items-center  vh-100 text-light">
+        <div className="mx-5 h-50">
+          <div className="display-2">Welcome to our</div>
+          <div className="display-2">mini estore</div>
+        </div>
+      </div>
     </>
   );
 };
