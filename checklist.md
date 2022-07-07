@@ -4,6 +4,13 @@
 3.  make bootstrap modal for error messages for login
 4.  add list of bought products
 5.  add all modal alerts for notifications and stuff
+6.  make purchase history component
+7.  use more than one table on db to connect them to see purhcase history
+8.  store all the bought items on db as json.
+9.  use prisma(optional)
+10. add logic on backend to create db and tables if they dont exists.
+11. implement formik and yup for login and signup.
+12. make all http requests using axios.
 
 <!-- completed -->
 

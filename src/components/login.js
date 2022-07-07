@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  Modal,
-  ModalBody,
-  ModalFooter,
-  Button,
-  Nav,
-  Navbar,
-  Form,
-} from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Modal, Button } from "react-bootstrap";
 
 // FUNCTIONS IMPORTS
 import signinfn from "../actions/signin";
@@ -54,6 +46,8 @@ const Login = () => {
         console.log(err);
       });
   };
+
+  console.log("this ran");
 
   return (
     <div className="container-fluid bg-dark min-vh-100 d-md-flex align-items-center ">

@@ -1,12 +1,12 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Link, Outlet, useParams } from "react-router-dom";
+import React, { memo } from "react";
+import { useSelector } from "react-redux";
+import { Link, Outlet } from "react-router-dom";
 import { Button, Nav, Row, Col, Container } from "react-bootstrap";
 
 // FUNCTIONS
 // 12. isproduct added or not
 // 13. import login checker
-import { isproductadded } from "../../functions/checkproduct";
+// import { isproductadded } from "../../functions/checkproduct";
 import islogged from "../../functions/islogged";
 
 // MAIN COMPONENT
@@ -34,7 +34,7 @@ const Products = () => {
               <Row className="">
                 {categories.map((categories, index) => {
                   return (
-                    <Col xs="auto mb-5 ps-0">
+                    <Col xs="auto mb-5 ps-0" key={index}>
                       <Button variant="dark" text="light">
                         <Nav.Link
                           as={Link}
@@ -61,4 +61,4 @@ const Products = () => {
   }
 };
 
-export default Products;
+export default memo(Products);

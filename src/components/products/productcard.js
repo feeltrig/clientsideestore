@@ -32,11 +32,11 @@ const Productcard = () => {
         >
           {products[category].map((obj, index) => {
             return (
-              <Col className="mb-5">
-                <Card text="light" bg="dark" className="border-box  ">
+              <Col className="mb-5 d-flex flex-grow" key={index}>
+                <Card text="light" bg="dark" className="w-100  ">
                   <Card.Body>
                     <Card.Title>{obj.productName}</Card.Title>
-                    <Card.Text className="h-100 ">{obj.description}</Card.Text>
+                    <Card.Text className="">{obj.description}</Card.Text>
                     <Card.Text>
                       <Nav.Link
                         className="px-0 text-warning"
@@ -53,7 +53,7 @@ const Productcard = () => {
                           dispatch(addtocart(obj.productName, category));
                         }
                       }}
-                      className="btn w-100 border btn-dark"
+                      className="btn w-100 border mt-5 btn-dark"
                     >
                       <FaCartPlus />
                     </button>

@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, memo } from "react";
 import {} from "react-bootstrap";
 
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 // import login checker
-import islogged from "../functions/islogged";
+// import islogged from "../functions/islogged";
 
 const Home = () => {
-  const [data, setData] = useState(undefined);
-  const state = useSelector((state) => {
-    return state;
-  });
-  const navigate = useNavigate();
+  // const [data, setData] = useState(undefined);
+  // const state = useSelector((state) => {
+  //   return state;
+  // });
+  // const navigate = useNavigate();
 
   // // FORCED LOGIN
   // useEffect(() => {
@@ -23,7 +23,7 @@ const Home = () => {
   //   }
   // }, []);
 
-  const islog = islogged(state);
+  // const islog = islogged(state);
 
   // FETCHING API
   // useEffect(() => {
@@ -50,4 +50,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);

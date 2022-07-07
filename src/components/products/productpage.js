@@ -1,6 +1,6 @@
 import React from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // FUNCTIONS IMPORTS
 // product intel
@@ -15,7 +15,7 @@ const Productpage = () => {
   const state = useSelector((state) => {
     return state;
   });
-  const location = useLocation();
+  // const location = useLocation();
   const { id, category } = useParams();
   const intel = productintel(state, category, id);
 
@@ -40,7 +40,7 @@ const Productpage = () => {
           </div>
           <button
             onClick={() => {
-              redirect("/products");
+              redirect(`/products/${category}`);
             }}
             className="btn m-5 btn-dark"
           >
@@ -55,7 +55,7 @@ const Productpage = () => {
         <div className="display-2">Stop hacking asshole</div>
         <button
           onClick={() => {
-            redirect("/login");
+            redirect("/login/");
           }}
           className="btn m-5 btn-dark"
         >
