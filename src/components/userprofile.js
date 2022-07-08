@@ -15,13 +15,6 @@ const Userprofile = () => {
     return state;
   });
 
-  // FETCH USER PURCHASELIST FROM DB
-  useEffect(() => {
-    fetch(
-      `http://localhost:3001/purchaseList/${state.userProfile.username}`
-    ).then();
-  }, []);
-
   // no access unless logged in
   if (islogged(state)) {
     return (

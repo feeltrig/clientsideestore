@@ -17,6 +17,8 @@ import Login from "./components/login";
 import Signin from "./components/signin";
 
 import Userprofile from "./components/userprofile";
+import PurchaseHistory from "./components/user/purchasehistory";
+
 import Navigation from "./components/navigation";
 import Error from "./components/Error";
 
@@ -52,8 +54,12 @@ function App() {
                   element={<Productpage />}
                 />
 
-                <Route path="/yourcart" element={<Yourcart />} />
-                <Route path="/userprofile" element={<Userprofile />} />
+                <Route path="yourcart" element={<Yourcart />} />
+                <Route path="userprofile" element={<Userprofile />}></Route>
+                <Route
+                  path="userprofile/purchasehistory"
+                  element={<PurchaseHistory />}
+                />
               </>
             )}
 

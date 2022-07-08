@@ -12,5 +12,6 @@ export const store = createStore(mainreducer, {
     username: null,
     password: null,
     email: null,
+    id: null,
   },
 });

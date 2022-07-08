@@ -12,20 +12,34 @@ const Login = () => {
   // 1. navigate
   // 2. dispatcher
   // 3. modal state
+  // 4. username
+  // 5. password
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [modalopen, setModalopen] = useState(false);
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
 
-  const submitfn = (data) => {
-    data.preventDefault();
-    let myForm = document.getElementById("myForm");
-    let dt = new FormData(myForm);
-    let username = dt.get("username");
-    let password = dt.get("password");
+  // CLEANERS
+  const inputCleaner = () => {
+    setusername("");
+    setpassword("");
+  };
+
+  // FORM SUBMIT FUNCTION
+  const submitfn = () => {
+    console.log("this ran");
+    // data.preventDefault();
+    // let myForm = document.getElementById("myForm");
+    // let dt = new FormData(myForm);
+    // let username = dt.get("username");
+    // let password = dt.get("password");
     let finaldata = {
-      username: username,
-      password: password,
+      username,
+      password,
     };
+
+    console.log(finaldata);
 
     // SENDING JSON DATA
     fetch("http://localhost:3001/api/login", {
@@ -36,18 +50,26 @@ const Login = () => {
       body: JSON.stringify(finaldata),
     })
       .then((response) => {
+        if (response.status > 300) {
+          setModalopen(true);
+          return;
+        }
         return response.json();
       })
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         dispatch(Loginfn(data[0]));
+
+        // redirect if access is allowed
+        if (data[1].allowAccess === "true") {
+          navigate("/");
+        } else {
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-  console.log("this ran");
 
   return (
     <div className="container-fluid bg-dark min-vh-100 d-md-flex align-items-center ">
@@ -56,12 +78,16 @@ const Login = () => {
         <Modal.Header>
           <Modal.Title>Message</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Succesfully logged in</Modal.Body>
+        <Modal.Body>
+          Log in failed. Incorrect username or password or profile doesn't
+          exists
+        </Modal.Body>
         <Modal.Footer>
           <Button
             variant="secondary"
             onClick={() => {
               setModalopen(false);
+              inputCleaner();
             }}
           >
             Close
@@ -73,7 +99,7 @@ const Login = () => {
       <form
         id="myForm"
         onSubmit={(e) => {
-          submitfn(e);
+          e.preventDefault();
         }}
         className="form container-sm w-auto border   bg-dark text-white p-4 px-5 "
       >
@@ -84,8 +110,12 @@ const Login = () => {
         <input
           type="text "
           name="username"
-          className="form-control mb-3"
+          className="form-control mb-3 inputfield"
           required
+          value={username}
+          onChange={(e) => {
+            setusername(e.target.value);
+          }}
         />
 
         {/* PASSWORD */}
@@ -95,15 +125,19 @@ const Login = () => {
         <input
           type="password"
           name="password"
-          className="form-control mb-3"
+          className="form-control mb-3 inputfield"
           required
+          value={password}
+          onChange={(e) => {
+            setpassword(e.target.value);
+          }}
         />
 
         {/* LOGIN */}
         <button
           type="submit"
           onClick={() => {
-            setModalopen(true);
+            submitfn();
           }}
           className="btn btn-light my-2"
         >

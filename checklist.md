@@ -2,15 +2,12 @@
 
 2.  add some regex for login stuff
 3.  make bootstrap modal for error messages for login
-4.  add list of bought products
-5.  add all modal alerts for notifications and stuff
-6.  make purchase history component
-7.  use more than one table on db to connect them to see purhcase history
-8.  store all the bought items on db as json.
-9.  use prisma(optional)
-10. add logic on backend to create db and tables if they dont exists.
-11. implement formik and yup for login and signup.
-12. make all http requests using axios.
+4.  add all modal alerts for notifications and stuff
+5.  use prisma(optional)
+6.  add logic on backend to create db and tables if they dont exists.
+7.  implement formik and yup for login and signup.
+8.  make all http requests using axios.
+9.  use express router for all the apis
 
 <!-- completed -->
 
@@ -25,3 +22,10 @@
 9.  made mysql login functionality
 10. add api to fetch database
 11. add api for checkout
+12. store all the bought items on db as json.
+13. make purchase history component
+14. add list of bought products
+15. make yourcart function correctly
+16. send user to some other page after succesfull login as guest or user.
+17. check for null purchased and append correct purchase history in frontend
+18. use more than one table on db to connect them to see purhcase history

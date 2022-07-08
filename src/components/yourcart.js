@@ -6,6 +6,7 @@ import { Toast, ToastContainer, Button, CloseButton } from "react-bootstrap";
 // ACTION IMPORTS
 // importing delete from cart function
 import deletefromcart from "../actions/deletefromcart";
+import emptyCart from "../actions/emptycart";
 
 // FUNCTION IMPORTS
 // notify modal
@@ -43,6 +44,8 @@ const Yourcart = () => {
     }
   };
 
+  // console.log(state.yourcart);
+
   // count total
   const counttotal = () => {
     let total = 0;
@@ -54,17 +57,19 @@ const Yourcart = () => {
 
   // CHECKOUT AND SEND LIST TO DB
   const handleCheckout = () => {
-    fetch(`http://localhost:3001/user/checkout/${state.userProfile.username}`, {
+    fetch(`http://localhost:3001/checkout/${state.userProfile.username}`, {
       method: "PUT",
       headers: new Headers({ "Content-Type": "application/JSON" }),
       Credential: true,
       body: JSON.stringify({
-        purchaseList: JSON.stringify(state.yourcart),
+        purchaseList: state.yourcart,
+        id: Number(state.userProfile.id),
         totalcost: Number(totalamount),
       }),
     })
       .then((res) => {
         if (res.status > 300) {
+          console.log(res.status);
           setalert(true);
         }
 
@@ -73,6 +78,7 @@ const Yourcart = () => {
       .then((result) => {
         console.log(result);
         setopenmodal(true);
+        dispatch(emptyCart());
       });
   };
 
@@ -159,7 +165,7 @@ const Yourcart = () => {
             <Button
               variant="primary"
               onClick={() => {
-                setalert(true);
+                // setalert(true);
                 handleCheckout();
               }}
             >

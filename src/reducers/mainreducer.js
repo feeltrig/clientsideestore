@@ -39,6 +39,11 @@ export default (state, { type, payload }) => {
       loginstate.userProfile = payload.profile;
       return loginstate;
 
+    case "emptycart":
+      let emptycartstate = { ...state };
+      emptycartstate.yourcart = [];
+      return emptycartstate;
+
     default:
       return state;
   }

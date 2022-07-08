@@ -47,15 +47,9 @@ const Navigation = () => {
                   Login
                 </Nav.Link>
 
+                {/* access after login */}
                 {islog && (
                   <>
-                    <Nav.Link as={Link} to="/products">
-                      Products
-                    </Nav.Link>
-
-                    <Nav.Link as={Link} to="/yourcart">
-                      Cart
-                    </Nav.Link>
                     <NavDropdown title="Account" id="collasible-nav-dropdown">
                       <NavDropdown.Item as={Link} to="/userprofile">
                         My Account
@@ -71,7 +65,22 @@ const Navigation = () => {
                       <NavDropdown.Item as={Link} to="/preferences">
                         Preferences
                       </NavDropdown.Item>
+                      <NavDropdown.Item
+                        as={Link}
+                        to="userprofile/purchasehistory"
+                      >
+                        Purchase History
+                      </NavDropdown.Item>
                     </NavDropdown>
+                    <Nav.Link as={Link} to="/products">
+                      Products
+                    </Nav.Link>
+
+                    <Nav.Link as={Link} to="/yourcart">
+                      Cart
+                    </Nav.Link>
+
+                    {/* dropdown menu */}
                   </>
                 )}
               </Nav>
