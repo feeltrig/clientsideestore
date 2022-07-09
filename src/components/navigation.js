@@ -31,6 +31,7 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const islog = islogged(state);
   const navigate = useNavigate();
+  const isUser = state.userProfile.username !== "guest";
 
   return (
     <>
@@ -43,10 +44,11 @@ const Navigation = () => {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="ms-auto">
-                <Nav.Link as={Link} to="/login">
-                  Login
-                </Nav.Link>
-
+                {!islog && (
+                  <Nav.Link as={Link} to="/login">
+                    Login
+                  </Nav.Link>
+                )}
                 {/* access after login */}
                 {islog && (
                   <>
@@ -65,12 +67,14 @@ const Navigation = () => {
                       <NavDropdown.Item as={Link} to="/preferences">
                         Preferences
                       </NavDropdown.Item>
-                      <NavDropdown.Item
-                        as={Link}
-                        to="userprofile/purchasehistory"
-                      >
-                        Purchase History
-                      </NavDropdown.Item>
+                      {isUser && (
+                        <NavDropdown.Item
+                          as={Link}
+                          to="userprofile/purchasehistory"
+                        >
+                          Purchase History
+                        </NavDropdown.Item>
+                      )}
                     </NavDropdown>
                     <Nav.Link as={Link} to="/products">
                       Products

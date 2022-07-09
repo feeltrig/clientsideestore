@@ -101,10 +101,10 @@ const Login = () => {
         onSubmit={(e) => {
           e.preventDefault();
         }}
-        className="form container-sm w-auto border   bg-dark text-white p-4 px-5 "
+        className="form container-sm w-auto shadow-lg bg-dark text-white p-4 px-5 "
       >
         {/* USERNAME */}
-        <label htmlFor="username" name="username" className="form-label lead">
+        <label htmlFor="username" name="username" className="form-label  lead">
           Username
         </label>
         <input
@@ -119,7 +119,7 @@ const Login = () => {
         />
 
         {/* PASSWORD */}
-        <label htmlFor="password" name="password" className="form-label lead">
+        <label htmlFor="password" name="password" className="form-label  lead">
           password
         </label>
         <input

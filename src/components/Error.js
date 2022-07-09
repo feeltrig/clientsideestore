@@ -11,7 +11,7 @@ const Error = () => {
         "Wrong url, Please check your url"
       </div>
       ;
-      <div className="mx-auto text-center border ">
+      <div className="mx-auto text-center  ">
         <Button
           variant="primary"
           onClick={() => {

@@ -1,15 +1,7 @@
-import React, { useEffect, useState } from "react";
-import {
-  Form,
-  FormGroup,
-  FormControl,
-  Container,
-  Row,
-  Col,
-  Button,
-  ButtonGroup,
-  CloseButton,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Form, Container, Row, Col, Button } from "react-bootstrap";
+import { useFormik } from "formik";
 
 const Signin = () => {
   // INTITIALIZATIONS
@@ -18,11 +10,27 @@ const Signin = () => {
   // gender
   // rich
   // country
+  // navigate hook
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-  const [gender, setgender] = useState("");
-  const [rich, setrich] = useState([]);
+  const [gender, setgender] = useState("male");
+  const [rich, setrich] = useState(["yes"]);
   const [city, setcity] = useState("");
+  const navigate = useNavigate();
+
+  // SETTING FORMIK VALIDATION
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+      gender: "male",
+      rich: ["yes"],
+      city: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+  });
 
   // FORM CLEANER
   const clearForm = () => {
@@ -54,6 +62,9 @@ const Signin = () => {
       body: JSON.stringify(profile),
     })
       .then((res) => {
+        if (res.status < 300) {
+          navigate("/");
+        }
         return res.json();
       })
       .then((res) => {
@@ -72,21 +83,20 @@ const Signin = () => {
   };
 
   return (
-    <Container fluid className=" text-light vh-100 bg-dark p-5 ">
+    <Container fluid className=" text-light vh-100  bg-dark p-5 ">
       <Row className="w-50 mx-auto">
         <Col>
+          {/* FORM */}
           <Form
             variant="sm"
-            className="mb-0"
-            onSubmit={(event) => {
-              handlesubmit(event);
-            }}
+            className="mb-0 shadow p-5"
+            onSubmit={formik.handleSubmit}
           >
             {/* PERSONAL INFO */}
 
             {/* USERNAME */}
             <Form.Group>
-              <Form.Label>User name</Form.Label>
+              <Form.Label className="lead">User name</Form.Label>
               <Form.Control
                 required
                 type="text"
@@ -94,104 +104,83 @@ const Signin = () => {
                 placeholder="Your name"
                 className="mb-3"
                 name="username"
-                value={username}
-                onChange={(event) => {
-                  setusername(event.target.value);
-                }}
+                value={formik.values.username}
+                onChange={formik.handleChange}
               />
             </Form.Group>
 
             {/* PASSWORD */}
             <Form.Group>
-              <Form.Label>Password</Form.Label>
+              <Form.Label className="lead">Password</Form.Label>
               <Form.Control
                 autoComplete="yes"
                 required
                 type="password"
                 id="password"
                 name="password"
-                value={password}
+                value={formik.values.password}
                 placeholder="Your password"
                 className="mb-3"
-                onChange={(event) => {
-                  setpassword(event.target.value);
-                }}
+                onChange={formik.handleChange}
               />
             </Form.Group>
 
             {/* GENDER */}
             <Form.Group>
-              <Form.Label>Your gender</Form.Label>
+              <Form.Label className="lead">Your gender</Form.Label>
 
               <Form.Check
                 label="male"
                 name="gender"
                 type="radio"
                 id="male"
-                onChange={(event) => {
-                  setgender(event.target.id);
-                }}
+                value="male"
+                onChange={formik.handleChange}
+                checked={formik.values.gender === "male"}
               />
               <Form.Check
                 label="female"
                 name="gender"
                 type="radio"
                 id="female"
-                onChange={(event) => {
-                  setgender(event.target.id);
-                }}
+                value="female"
+                onChange={formik.handleChange}
+                checked={formik.values.gender === "female"}
               />
               <Form.Check
                 label="other"
                 name="gender"
                 type="radio"
                 id="other"
-                className="mb-3"
-                onChange={(event) => {
-                  setgender(event.target.id);
-                }}
+                className="mb-3 "
+                value="other"
+                onChange={formik.handleChange}
+                checked={formik.values.gender === "other"}
               />
 
               {/* RICH */}
             </Form.Group>
             <Form.Group>
-              <Form.Label>Are you rich</Form.Label>
+              <Form.Label className="lead">Are you rich</Form.Label>
 
               <Form.Check
                 label="yes"
-                id="richyes"
-                value="yes"
-                onChange={(event) => {
-                  setrich((state) => {
-                    if (event.target.checked) {
-                      return [...state, event.target.value];
-                    } else {
-                      return [...state].filter((item) => {
-                        return item !== event.target.value;
-                      });
-                    }
-                  });
-                }}
+                id="yes"
+                onChange={formik.handleChange}
+                checked={formik.values.rich.includes("yes")}
               />
               <Form.Check
                 label="my family"
-                id="richno"
-                value="my family"
-                onChange={(event) => {
-                  setrich((state) => {
-                    if (event.target.checked) {
-                      return [...state, event.target.value];
-                    } else {
-                      return [...state].filter((item) => {
-                        return item !== event.target.value;
-                      });
-                    }
-                  });
-                }}
+                id="my family"
+                value={formik.values.rich}
+                onChange={formik.handleChange}
+                checked={formik.values.rich.includes("my family")}
               />
             </Form.Group>
 
-            <Form.Label className="mt-3">Your city</Form.Label>
+            <Form.Label className="mt-3 lead">Your city</Form.Label>
+
+            {/* CITY */}
             <Form.Select
               defaultValue={"india"}
               onChange={(event) => {

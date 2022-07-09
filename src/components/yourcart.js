@@ -13,25 +13,31 @@ import emptyCart from "../actions/emptycart";
 import Notifymodal from "../functions/notifymodal";
 
 const Yourcart = () => {
+  // IMPORTS
+  // importing state
+  const state = useSelector((state) => {
+    return state;
+  });
+
   // INITIALIZATIONS
   // 1.1 no items in cart state
   // 1.2 total amount state
-  // 1.3 notification state
+  // 1.3 notification state for connection error
   // 1.4 purchased item list
   // 1.5 checkout notification state modal
+  // 1.6 is user not guest
+  // 1.7 importing dispatcher
+  // 1.8 notification state error message
   const [isCartEmpty, setIsCartEmpty] = useState(true);
   const [totalamount, setTotalamount] = useState(0);
   const [alert, setalert] = useState(false);
   const [purchaseList, setpurchaseList] = useState([]);
   const [openmodal, setopenmodal] = useState(false);
-
-  // IMPORTS
-  // importing state
-  // importing dispatcher
-  const state = useSelector((state) => {
-    return state;
-  });
+  const isUser = state.userProfile.username !== "guest";
   const dispatch = useDispatch();
+  const [errormessage, seterrormessage] = useState(
+    "Failed to connect please try again."
+  );
 
   // CART UPDATER
   // show error function
@@ -57,29 +63,36 @@ const Yourcart = () => {
 
   // CHECKOUT AND SEND LIST TO DB
   const handleCheckout = () => {
-    fetch(`http://localhost:3001/checkout/${state.userProfile.username}`, {
-      method: "PUT",
-      headers: new Headers({ "Content-Type": "application/JSON" }),
-      Credential: true,
-      body: JSON.stringify({
-        purchaseList: state.yourcart,
-        id: Number(state.userProfile.id),
-        totalcost: Number(totalamount),
-      }),
-    })
-      .then((res) => {
-        if (res.status > 300) {
-          console.log(res.status);
-          setalert(true);
-        }
-
-        return res.json();
+    // abort if user is not logged in/signed up
+    if (isUser) {
+      fetch(`http://localhost:3001/checkout/${state.userProfile.username}`, {
+        method: "PUT",
+        headers: new Headers({ "Content-Type": "application/JSON" }),
+        Credential: true,
+        body: JSON.stringify({
+          purchaseList: state.yourcart,
+          id: Number(state.userProfile.id),
+          totalcost: Number(totalamount),
+        }),
       })
-      .then((result) => {
-        console.log(result);
-        setopenmodal(true);
-        dispatch(emptyCart());
-      });
+        .then((res) => {
+          if (res.status > 300) {
+            console.log(res.status);
+            seterrormessage("Failed to connect please try again.");
+            setalert(true);
+          }
+
+          return res.json();
+        })
+        .then((result) => {
+          console.log(result);
+          setopenmodal(true);
+          dispatch(emptyCart());
+        });
+    } else {
+      seterrormessage("Sign up or Login with user account to checkout");
+      setalert(true);
+    }
   };
 
   useEffect(() => {
@@ -104,7 +117,7 @@ const Yourcart = () => {
                 <strong className="me-auto">Alert</strong>
                 <CloseButton onClick={() => setalert(false)} />
               </Toast.Header>
-              <Toast.Body>Failed to connect please try again.</Toast.Body>
+              <Toast.Body>{errormessage}</Toast.Body>
             </Toast>
           </ToastContainer>
         )}
@@ -165,7 +178,6 @@ const Yourcart = () => {
             <Button
               variant="primary"
               onClick={() => {
-                // setalert(true);
                 handleCheckout();
               }}
             >

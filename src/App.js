@@ -31,9 +31,12 @@ import { store } from "./appstate/appstate";
 function App() {
   // set logged state
   const [islogged, setislogged] = useState(false);
+  const [isUser, setIsUser] = useState(false);
   store.subscribe(() => {
     let islogged = store.getState().userProfile.username !== null;
     setislogged(islogged);
+    let isuser = store.getState().userProfile.username !== "guest";
+    setIsUser(isuser);
   });
 
   return (
@@ -56,16 +59,18 @@ function App() {
 
                 <Route path="yourcart" element={<Yourcart />} />
                 <Route path="userprofile" element={<Userprofile />}></Route>
-                <Route
-                  path="userprofile/purchasehistory"
-                  element={<PurchaseHistory />}
-                />
+                {isUser && (
+                  <Route
+                    path="userprofile/purchasehistory"
+                    element={<PurchaseHistory />}
+                  />
+                )}
               </>
             )}
 
             <Route path="/" element={<Home />} />
             <Route path="*" element={<Error />} />
-            <Route path="/login" element={<Login />} />
+            {!islogged && <Route path="/login" element={<Login />} />}
             <Route path="/signin" element={<Signin />} />
           </Routes>
 
