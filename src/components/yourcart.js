@@ -131,7 +131,7 @@ const Yourcart = () => {
             style={isCartEmpty ? { display: "block" } : { display: "none" }}
             className="error text-bold lead bg-dark text-warning p-2 text-center"
           >
-            No items added. Add some you cheapskate.
+            No items added. Add some items first.
           </div>
 
           {/* items added */}

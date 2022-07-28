@@ -1,31 +1,31 @@
 export const allproducts = {
-  stupiditems: [
-    {
-      productName: "eyelash curler",
-      price: 50,
-      description: "curl like a hoe",
-    },
-    {
-      productName: "Clips",
-      price: 250,
-      description: "clips your hair tightly",
-    },
-    {
-      productName: "Nails",
-      price: 20,
-      description: "scratch your ass nicely",
-    },
-    {
-      productName: "Lipstick",
-      price: 120,
-      description: "to look like a clown",
-    },
-    {
-      productName: "Hat",
-      price: 70,
-      description: "hide yourself being a pervert",
-    },
-  ],
+  // stupiditems: [
+  //   {
+  //     productName: "eyelash curler",
+  //     price: 50,
+  //     description: "curl like a hoe",
+  //   },
+  //   {
+  //     productName: "Clips",
+  //     price: 250,
+  //     description: "clips your hair tightly",
+  //   },
+  //   {
+  //     productName: "Nails",
+  //     price: 20,
+  //     description: "scratch your ass nicely",
+  //   },
+  //   {
+  //     productName: "Lipstick",
+  //     price: 120,
+  //     description: "to look like a clown",
+  //   },
+  //   {
+  //     productName: "Hat",
+  //     price: 70,
+  //     description: "hide yourself being a pervert",
+  //   },
+  // ],
   bathitems: [
     {
       productName: "soap",
